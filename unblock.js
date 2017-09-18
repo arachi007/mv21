@@ -14,11 +14,14 @@ var subindo = $("#subjudul").attr("data");
 	var judul = "[mv21.me] " + title + " Subtitle Indonesia";
   var playerInstance = jwplayer("myvideo")
                 playerInstance.setup({
-   sources: [{file:gapis,"type":"mkv/mp4","label":"Sever 1", "default": "true", "title":judul},{file:second,"type":"mkv/mp4","label":"Sever 2", "default": "false"},{file:"","type":"mkv/mp4","label":"Server 3", "default": "false"}],
+   sources: [{file:gapis,"type":"mkv/mp4","label":"Sever 1", "default": "true"},{file:second,"type":"mkv/mp4","label":"Sever 2", "default": "false"},{file:"","type":"mkv/mp4","label":"Server 3", "default": "false"}],
 
    skin: "seven",
 title:judul,
-   preload: "false",
+			description: "Nonton Streaming Film Movie Terbaru Subtitle Indonesia",
+   preload: "none",
+			displaytitle: "true",
+			displaydescription: "true",
    primary: "html5",
    autostart: "false",
    image: gambar,
