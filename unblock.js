@@ -13,7 +13,7 @@ var second = $("#second").attr("data");
 	if (sub.match("http")){
 var subindo = sub;
 }else {
-  var subindo = "https://rawgit.com/arachi007/mv21/master/default.srt"
+  var subindo = "https://rawgit.com/arachi007/mv21/master/default.srt";
   }
 	var title = $(".post-title").text();
 	var judul = "[mv21.me] " + title + " Subtitle Indonesia";
