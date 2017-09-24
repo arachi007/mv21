@@ -37,9 +37,9 @@ title:judul,
    aspectratio: "16:9",
 tracks: [{
 			file: subindo,
-			label: "Subs",
+			label: "Indonesia",
 			kind:  "captions",
-			default: "true",
+			default: "true"
 			}],
    captions: {
    color: "#FFFF00",
