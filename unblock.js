@@ -23,7 +23,7 @@ var judul = "[mv21.me] " + title + " Subtitle Indonesia";
 jwplayer.key="PFReTHIhCnry8V0x4gtC5KPDsFqHOdfAeQ7qNQ==";	
 var playerInstance = jwplayer("myvideo")
                 playerInstance.setup({
-   sources: [{file:gapis,"type":"mkv/mp4","label":"Sever 1", "default": "true"},{file:second,"type":"mkv/mp4","label":"Sever 2", "default": "false"},{file:"","type":"mkv/mp4","label":"Server 3", "default": "false"}],
+   sources: [{file:gapis,"type":"mkv/mp4","label":"Sever 1", "default": "true"},{file:second,"type":"mkv/mp4","label":"Sever 2"},{file:"","type":"mkv/mp4","label":"Server 3"}],
 
    skin: "seven",
 title:judul,
