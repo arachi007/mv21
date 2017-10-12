@@ -36,6 +36,11 @@ title:judul,
    image: gambar,
    width: "100%",
    aspectratio: "16:9",
+logo: [{
+   file:"https://3.bp.blogspot.com/-c6lKiLiIBqM/WUimbwM9N2I/AAAAAAAACGg/vcNvKbIHgS0ytF-MZHRssdOqbWu8XEFUwCK4BGAYYCw/s150/Logo%2Bmv21%2B%25232.png",
+   link: "http://www.mv21.me/",
+   position: "top-right"
+                  }],			
 tracks: [{
 			file: subindo,
 			label: "Indonesia",
