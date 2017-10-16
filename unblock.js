@@ -55,5 +55,9 @@ tracks: [{
    aboutlink:"http://www.mv21.me",
    abouttext:"Player By Movie Video 21",
    });
+	 playerInstance.addButton(
+                'https://3.bp.blogspot.com/-c6lKiLiIBqM/WUimbwM9N2I/AAAAAAAACGg/vcNvKbIHgS0ytF-MZHRssdOqbWu8XEFUwCK4BGAYYCw/s100/Logo%2Bmv21%2B%25232.png',
+                'Download Movie',
+);
 $("#bigframe").remove();
   });
