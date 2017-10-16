@@ -37,9 +37,10 @@ title:judul,
    width: "100%",
    aspectratio: "16:9",
 logo: [{
-   file:'https://3.bp.blogspot.com/-c6lKiLiIBqM/WUimbwM9N2I/AAAAAAAACGg/vcNvKbIHgS0ytF-MZHRssdOqbWu8XEFUwCK4BGAYYCw/s150/Logo%2Bmv21%2B%25232.png',
-   link: 'http://www.mv21.me/',
-                  }],			
+   file:"https://3.bp.blogspot.com/-c6lKiLiIBqM/WUimbwM9N2I/AAAAAAAACGg/vcNvKbIHgS0ytF-MZHRssdOqbWu8XEFUwCK4BGAYYCw/s150/Logo%2Bmv21%2B%25232.png",
+   link: "http://www.mv21.me/"
+                  }],
+			 logo: {file:"https://3.bp.blogspot.com/-c6lKiLiIBqM/WUimbwM9N2I/AAAAAAAACGg/vcNvKbIHgS0ytF-MZHRssdOqbWu8XEFUwCK4BGAYYCw/s100/Logo%2Bmv21%2B%25232.png",link: "http://www.mv21.me/"},
 tracks: [{
 			file: subindo,
 			label: "Indonesia",
@@ -55,9 +56,6 @@ tracks: [{
    aboutlink:"http://www.mv21.me",
    abouttext:"Player By Movie Video 21",
    });
-	 playerInstance.addButton(
-                'https://3.bp.blogspot.com/-c6lKiLiIBqM/WUimbwM9N2I/AAAAAAAACGg/vcNvKbIHgS0ytF-MZHRssdOqbWu8XEFUwCK4BGAYYCw/s100/Logo%2Bmv21%2B%25232.png',
-                'Download Movie',
-);
+	 
 $("#bigframe").remove();
   });
