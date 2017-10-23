@@ -19,8 +19,7 @@ else
 var subindo = "https://rawgit.com/arachi007/mv21/master/default.srt";
 }
 var title = $(".post-title").text();
-var judul = "[mv21.me] " + title + " Subtitle Indonesia";
-jwplayer.key="PFReTHIhCnry8V0x4gtC5KPDsFqHOdfAeQ7qNQ==";	
+var judul = "[mv21.me] " + title + " Subtitle Indonesia";	
 var playerInstance = jwplayer("myvideo")
                 playerInstance.setup({
    sources: [{file:gapis,"type":"mkv/mp4","label":"Sever 1", "default": "true"},{file:second,"type":"mkv/mp4","label":"Sever 2"},{file:"","type":"mkv/mp4","label":"Server 3"}],
