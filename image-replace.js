@@ -1,3 +1,4 @@
+$(function() {
 $('.separator').find('img').replaceWith(function () {
 $('a').remove();
 var gambar = this.src;
@@ -8,3 +9,4 @@ $('.separator').replaceWith(function () {
 $('a').remove();
 });
 $(".separator").removeAttr("style");
+});
