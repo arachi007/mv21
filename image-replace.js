@@ -7,3 +7,4 @@ var gbrhasil = gambar.replace(/s320/g, "s500");
 $('.separator').replaceWith(function () {
 $('a').remove();
 });
+$(".separator").removeAttr("style");
