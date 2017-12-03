@@ -5,42 +5,5 @@
 </style>
 <div id="myvideo"></div>
 <script>
-function getQueryVariable(variable)
-	{
-	var query=window.location.search.substring(1);
-	var dec=window.atob(query);
-	var vars=dec.split("&");
-	for(var i=0;
-	i<vars.length;
-	i++)
-		{
-		var pair=vars[i].split("=");
-		if(pair[0]==variable)
-			{
-			return pair[1]
-		}
-	}
-	return(false)
-}
-$(function(){
-  var playerInstance = jwplayer("myvideo")
-                playerInstance.setup({
-   sources: [{file:'https://www.googleapis.com/drive/v3/files/' + getQueryVariable("id") + '?alt=media&key=AIzaSyDjQy5oGfCBWx-KxyyKQnMlH9y-oIwUhB0','type':'mkv/mp4','label':'Sever 1', 'default': 'true'}],
-   skin: 'seven',
-   preload: 'none',
-   primary: 'html5',
-   autostart: 'false',
-   width: '100%',
-image: getQueryVariable("poster"),
-title: 'Nonton ' + getQueryVariable("title") + ' Subtitle Indonesia',
-   logo: [{
-   file:'https://3.bp.blogspot.com/-c6lKiLiIBqM/WUimbwM9N2I/AAAAAAAACGg/vcNvKbIHgS0ytF-MZHRssdOqbWu8XEFUwCK4BGAYYCw/s150/Logo%2Bmv21%2B%25232.png',
-   link: 'http://www.mv21.me/',
-                  }],               
-displaytitle: 'true',
-   aspectratio: '16:9',
-   aboutlink:'http://www.mv21.me',
-   abouttext:'Player By Movie Video 21',
-   });
-});
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('q 4(8){2 a=b.r.s.t(1);2 c=b.u(a);2 5=c.d("&");v(2 i=0;i<5.w;i++){2 6=5[i].d("=");x(6[0]==8){e 6[1]}}e(f)}2 g=y("z");g.A({B:[{h:\'j://7.C.k/D/E/F/\'+4("G")+\'?H=I&J=K-L-M\',\'N\':\'O/P\',\'Q\':\'R 1\',\'S\':\'l\'}],T:\'U\',V:\'W\',X:\'Y\',Z:\'f\',10:\'11%\',12:4("13"),m:\'14 \'+4("m")+\' 15 17\',18:[{h:\'j://3.19.1a.k/-1b/1c/1d/1e-1f/1g/1h%1i%1j%1k.1l\',1m:\'n://7.o.p/\',}],1n:\'l\',1o:\'16:9\',1p:\'n://7.o.p\',1q:\'1r 1s 1t 1u 1v\',});',62,94,'||var||getQueryVariable|vars|pair|www|variable||query|window|dec|split|return|false|playerInstance|file||https|com|true|title|http|mv21|me|function|location|search|substring|atob|for|length|if|jwplayer|myvideo|setup|sources|googleapis|drive|v3|files|id|alt|media|key|AIzaSyDjQy5oGfCBWx|KxyyKQnMlH9y|oIwUhB0|type|mkv|mp4|label|Sever|default|skin|seven|preload|none|primary|html5|autostart|width|100|image|poster|Nonton|Subtitle||Indonesia|logo|bp|blogspot|c6lKiLiIBqM|WUimbwM9N2I|AAAAAAAACGg|vcNvKbIHgS0ytF|MZHRssdOqbWu8XEFUwCK4BGAYYCw|s150|Logo|2Bmv21|2B|25232|png|link|displaytitle|aspectratio|aboutlink|abouttext|Player|By|Movie|Video|21'.split('|'),0,{}))
 </script>
