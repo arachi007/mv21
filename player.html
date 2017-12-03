@@ -1,27 +1,21 @@
 <div id="myvideo"></div>
-<script src='https://cdn.rawgit.com/ancoknamhay/plugin/master/jwplayer.js'/>
-<script>jwplayer.key=&quot;PFReTHIhCnry8V0x4gtC5KPDsFqHOdfAeQ7qNQ==&quot;;</script> 
-<script src='//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'/>
+<script src='https://cdn.rawgit.com/ancoknamhay/plugin/master/jwplayer.js'></script>
+<script>jwplayer.key="PFReTHIhCnry8V0x4gtC5KPDsFqHOdfAeQ7qNQ==";</script> 
+<script src='//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'> </script>
+
 <script>
-// <[CDATA[
+//<![CDATA[
 $(function() {
-var url = window.location.href;
-var id = url.replace("https://cdn.rawgit.com/arachi007/mv21/802ddf6b/player.html?id=","";
-var gapis = 'https://www.googleapis.com/drive/v3/files/'+ id +'?alt=media&key=AIzaSyDjQy5oGfCBWx-KxyyKQnMlH9y-oIwUhB0';	
+var gapis = 'https://www.googleapis.com/drive/v3/files/0BzRKk_yNEfpGM1lTRmgtemdmdTA?alt=media&key=AIzaSyDjQy5oGfCBWx-KxyyKQnMlH9y-oIwUhB0';	
 var playerInstance = jwplayer("myvideo")
                 playerInstance.setup({
-   sources: [{file:gapis,"type":"mkv/mp4","label":"Sever 1", "default": "true"},{file:second,"type":"mkv/mp4","label":"Sever 2"},{file:"","type":"mkv/mp4","label":"Server 3"}],
+   sources: [{file:gapis,"type":"mkv/mp4","label":"Sever 1", "default": "true"}],
    skin: "seven",
-description: "Nonton Streaming Film Movie Terbaru Subtitle Indonesia",
    preload: "none",
    primary: "html5",
    autostart: "false",
    width: "100%",
    aspectratio: "16:9",
-logo: [{
-   file:"https://3.bp.blogspot.com/-c6lKiLiIBqM/WUimbwM9N2I/AAAAAAAACGg/vcNvKbIHgS0ytF-MZHRssdOqbWu8XEFUwCK4BGAYYCw/s150/Logo%2Bmv21%2B%25232.png",
-   link: "http://www.mv21.me/"
-                  }],
    aboutlink:"http://www.mv21.me",
    abouttext:"Player By Movie Video 21",
    });
