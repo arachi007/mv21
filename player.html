@@ -6,34 +6,6 @@
 
 <script>
 //<![CDATA[
-function getQueryVariable(variable) {
-	var query = window.location.search.substring(1);
-	var dec = window.atob(query);
-	var vars = dec.split("&");
-	for (var i=0;i<vars.length;i++) {
-		var pair = vars[i].split("=");
-		if(pair[0] == variable){return pair[1];}
-	}
-	return(false);
-}	
-$(function() {
-var gapis = 'https://www.googleapis.com/drive/v3/files/' + getQueryVariable("id") + '?alt=media&key=AIzaSyDjQy5oGfCBWx-KxyyKQnMlH9y-oIwUhB0';	
-var playerInstance = jwplayer("myvideo")
-                playerInstance.setup({
-   sources: [{file:gapis,'type':'mkv/mp4','label':'Sever 1', 'default': 'true'}],
-   skin: 'seven',
-   preload: 'none',
-   primary: 'html5',
-   autostart: 'false',
-   width: '100%',
-image: getQueryVariable("poster"),
-title: 'Nonton ' + getQueryVariable("title") + ' Subtitle Indonesia',
-displaytitle: 'true',
-   aspectratio: '16:9',
-   aboutlink:'http://www.mv21.me',
-   abouttext:'Player By Movie Video 21',
-   });
-	
-});
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('6 3(7){2 8=a.l.m.n(1);2 b=a.o(8);2 4=b.c("&");p(2 i=0;i<4.q;i++){2 5=4[i].c("=");r(5[0]==7){d 5[1]}}d(e)}$(6(){2 f=\'s://g.t.u/v/w/x/\'+3("y")+\'?z=A&B=C-D-E\';2 h=F("G")h.H({I:[{J:f,\'K\':\'L/M\',\'N\':\'O 1\',\'P\':\'j\'}],Q:\'R\',S:\'T\',U:\'V\',W:\'e\',X:\'Y%\',Z:3("10"),k:\'11 \'+3("k")+\' 12 13\',14:\'j\',15:\'16:9\',17:\'18://g.19.1a\',1b:\'1c 1d 1e 1f 1g\',})});',62,79,'||var|getQueryVariable|vars|pair|function|variable|query||window|dec|split|return|false|gapis|www|playerInstance||true|title|location|search|substring|atob|for|length|if|https|googleapis|com|drive|v3|files|id|alt|media|key|AIzaSyDjQy5oGfCBWx|KxyyKQnMlH9y|oIwUhB0|jwplayer|myvideo|setup|sources|file|type|mkv|mp4|label|Sever|default|skin|seven|preload|none|primary|html5|autostart|width|100|image|poster|Nonton|Subtitle|Indonesia|displaytitle|aspectratio||aboutlink|http|mv21|me|abouttext|Player|By|Movie|Video|21'.split('|'),0,{}))
 //]]>
 </script>
