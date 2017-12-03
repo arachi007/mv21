@@ -1,22 +1,15 @@
 <div id="myvideo"></div>
+<script async='async' defer='defer' src='https://cdn.rawgit.com/ancoknamhay/plugin/master/jwplayer.js'/>
+<script>jwplayer.key=&quot;PFReTHIhCnry8V0x4gtC5KPDsFqHOdfAeQ7qNQ==&quot;;</script> 
 <script>
 // <[CDATA[
 $(function() {
-
-var gambar = $(".videoIframe").attr("src");
 var currentURL=location.href;
 var str = currentURL;
 var res = str.replace("https://rawgit.com/arachi007/mv21/master/player.html?id=", "");
 var gapis = 'https://www.googleapis.com/drive/v3/files/'+ res +'?alt=media&key=AIzaSyDjQy5oGfCBWx-KxyyKQnMlH9y-oIwUhB0';
 
-var sub = $("#subjudul").attr("data");
-if (sub.match("http")){
-var subindo = sub;
-}
-else
-{
-var subindo = "https://rawgit.com/arachi007/mv21/master/default.srt";
-}
+
 var title = $(".post-title").text();
 var judul = "[mv21.me] " + title + " Subtitle Indonesia";	
 var playerInstance = jwplayer("myvideo")
@@ -24,14 +17,12 @@ var playerInstance = jwplayer("myvideo")
    sources: [{file:gapis,"type":"mkv/mp4","label":"Sever 1", "default": "true"},{file:second,"type":"mkv/mp4","label":"Sever 2"},{file:"","type":"mkv/mp4","label":"Server 3"}],
 
    skin: "seven",
-title:judul,
 			description: "Nonton Streaming Film Movie Terbaru Subtitle Indonesia",
    preload: "none",
 			displaytitle: "true",
 			displaydescription: "true",
    primary: "html5",
    autostart: "false",
-   image: gambar,
    width: "100%",
    aspectratio: "16:9",
 logo: [{
