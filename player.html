@@ -1,5 +1,80 @@
-<style type="text/css">*{margin:0;padding:0}#picasa{position:absolute;width:100%!important;height:100%!important}.jw-button-color:hover,.jw-toggle,.jw-toggle:hover,.jw-open,.jw-progress{color:#008fee!important;}.jw-active-option{background-color:#008fee!important;}.jw-progress{background:#008fee!important;}.jw-skin-seven .jw-toggle.jw-off{color:#fff!important}</style>
-<div id="myvideo"></div>
+<style>
+  .ml4 {
+  position: relative;
+  font-weight: 900;
+  font-size: 4.5em;
+}
+.ml4 .letters {
+  font-color: white;
+  position: absolute;
+  margin: auto;
+  left: 45%;
+  top: 0.3em;
+  right: 45%;
+  opacity: 0; 
+}
+</style>
+<h1 class="ml4" id="loading" style='display:block'>
+  <span class="letters letters-1">Ready</span>
+  <span class="letters letters-2">Set</span>
+  <span class="letters letters-3">Go!</span>
+</h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script>
+  var ml4 = {};
+ml4.opacityIn = [0,1];
+ml4.scaleIn = [0.2, 1];
+ml4.scaleOut = 3;
+ml4.durationIn = 800;
+ml4.durationOut = 600;
+ml4.delay = 500;
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml4 .letters-1',
+    opacity: ml4.opacityIn,
+    scale: ml4.scaleIn,
+    duration: ml4.durationIn
+  }).add({
+    targets: '.ml4 .letters-1',
+    opacity: 0,
+    scale: ml4.scaleOut,
+    duration: ml4.durationOut,
+    easing: "easeInExpo",
+    delay: ml4.delay
+  }).add({
+    targets: '.ml4 .letters-2',
+    opacity: ml4.opacityIn,
+    scale: ml4.scaleIn,
+    duration: ml4.durationIn
+  }).add({
+    targets: '.ml4 .letters-2',
+    opacity: 0,
+    scale: ml4.scaleOut,
+    duration: ml4.durationOut,
+    easing: "easeInExpo",
+    delay: ml4.delay
+  }).add({
+    targets: '.ml4 .letters-3',
+    opacity: ml4.opacityIn,
+    scale: ml4.scaleIn,
+    duration: ml4.durationIn
+  }).add({
+    targets: '.ml4 .letters-3',
+    opacity: 0,
+    scale: ml4.scaleOut,
+    duration: ml4.durationOut,
+    easing: "easeInExpo",
+    delay: ml4.delay
+  }).add({
+    targets: '.ml4',
+    opacity: 0,
+    duration: 500,
+    delay: 500
+  });
+</script>
+<style type="text/css">*{background: black;margin:0;padding:0}#picasa{position:absolute;width:100%!important;height:100%!important}.jw-button-color:hover,.jw-toggle,.jw-toggle:hover,.jw-open,.jw-progress{color:#008fee!important;}.jw-active-option{background-color:#008fee!important;}.jw-progress{background:#008fee!important;}.jw-skin-seven .jw-toggle.jw-off{color:#fff!important}</style>
+<div id="myvideo" style='display:none'></div>
 <script src='https://cdn.rawgit.com/ancoknamhay/plugin/master/jwplayer.js'></script>
 <script>jwplayer.key="PFReTHIhCnry8V0x4gtC5KPDsFqHOdfAeQ7qNQ==";</script> 
 <script src='//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'> </script>
@@ -28,7 +103,8 @@ displaytitle: 'true',
    aboutlink:'http://www.mv21.me',
    abouttext:'Player By Movie Video 21',
    });
-  
+  $("#loading").style.display = "none";
+  $("#myvideo").style.display = "block";  
 });
   //]]>
 </script>
