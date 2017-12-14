@@ -68,7 +68,7 @@ country +=  item.iso_3166_1 + ', ';
 $("#country").val(country);
 }
 if (idnya == "release_date") {
-  var nambul = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var nambul = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var bulan = value.slice(5,7) - 1;
 var nabul = nambul[bulan];
 var year = value.slice(8,10) + ' ' + nabul  + ' ' + value.slice(0, 4) ;
@@ -117,7 +117,7 @@ $("#output").val('<h3>Synopsis</h3>'+'\n'
 '</div>'+'\n'
 );
 document.getElementById("output").style.height = (document.getElementById("output").scrollHeight)+"px";
-$("#genrenya").html($("#genres").val() + $("#country").val() + $("#release_date").val().slice(0,-4));
+$("#genrenya").html($("#genres").val() + $("#country").val() + $("#release_date").val().slice(7,11));
 }
 	</script>	
 </head>
