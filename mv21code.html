@@ -32,6 +32,14 @@ Update: 9/8/2017
 	resize: none;
 	}
 	</style>
+
+<script>
+function letsgo(){
+var imdb = $("#imdb").value;
+	alert (imdb);
+}
+	
+	</script>	
 </head>
 <body><form>
 	<div><span>IMDB ID : </span> <input type="text" id="imdb" /> <button id="getdata" class="btn btn-primary" onclick="letsgo()" type="submit">Get INFO</button></div>
@@ -123,5 +131,7 @@ Update: 9/8/2017
 	</table></div>
 	<div> <button id="generate" class="btn btn-success" onclick="generate()" type="submit">Generate HTML</button> </div>
 	<fieldset disabled><textarea id="output"></textarea></fieldset>
+	
+	
 </body>
 </html>
