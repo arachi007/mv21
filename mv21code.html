@@ -39,7 +39,7 @@ $("#hasilnya").css("display", "block");
 var imdb = $("#imdb").val();
 var url = "https://api.themoviedb.org/3/movie/";
 var respon = "?append_to_response=trailers,credits";
-var string = "&language=en&include_image_language=en";
+var string = "&language=en-US";
 var key = "&api_key=3ab3d30d05909bf2341d51fd240c6570";
 $.getJSON(url + imdb + respon + string + key, function(hasil) {
 $.each(hasil, function(idnya, value) {
@@ -50,8 +50,8 @@ $("#judulnya").html(value + " (" + hasil.release_date.slice(0,4) + ")");
 if (idnya == "original_title") {
 $("#original_title").val(value);
 }
-if (idnya == "belongs_to_collection") {
-$("#poster").val("https://image.tmdb.org/t/p/w500"+hasil.belongs_to_collection.poster_path);
+if (idnya == "poster_path") {
+$("#poster").val("https://image.tmdb.org/t/p/w500"+value);
 }
 if (idnya == "genres") {
 var genres = "";
@@ -98,7 +98,6 @@ $("#synopsis").val(value);
 }
 });
 });
-
 }
 function generate(){
 $("#manual").css("display", "block");
@@ -118,12 +117,13 @@ $("#output").val('<h3>Synopsis</h3>'+'\n'
 '</div>'+'\n'
 );
 document.getElementById("output").style.height = (document.getElementById("output").scrollHeight)+"px";
-$("#genrenya").html($("#genres").val() + $("#country").val() + $("#release_date").val().slice(7,12));
+$("#genrenya").html($("#genres").val() + $("#country").val() + $("#release_date").val().slice(0,-4));
 }
 	</script>	
 </head>
 <body>
-	<div><span>IMDB ID : </span> <input type="text" id="imdb" /> <button id="getdata" class="btn btn-primary" onclick="letsgo()" type="submit">Get INFO</button></div>
+	<div><span>IMDB ID : </span> <input type="text" id="imdb" placeholder="tt1961175 or 415842" /> <button id="getdata" class="btn btn-primary" onclick="letsgo()" type="submit">Get INFO</button></div>
+    <span>www.imdb.com/title/<b>tt1961175</b> or https://www.themoviedb.org/movie/<b>415842</b>-american-assassin</span>
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 	<table class="table table-striped table-hover table-responsive">
