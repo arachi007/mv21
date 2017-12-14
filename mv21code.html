@@ -13,7 +13,7 @@ Update: 9/8/2017
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <!-- Jquery -->
-  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js' type='text/javascript'></script>
+  <script src='//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' type='text/javascript'></script>
   <script src="https://cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.js"></script>
   <!-- Bootstrap -->
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -35,16 +35,77 @@ Update: 9/8/2017
 
 <script>
 function letsgo(){
-var imdb = $("#imdb").value;
-	alert (imdb);
+var imdb = $("#imdb").val();
+var url = "https://api.themoviedb.org/3/movie/";
+var respon = "?append_to_response=trailers,credits";
+var string = "&language=en&include_image_language=en";
+var key = "&api_key=3ab3d30d05909bf2341d51fd240c6570";
+$.getJSON(url + imdb + respon + string + key, function(hasil) {
+$.each(hasil, function(idnya, value) {
+if (idnya == "title") {
+$("#title").val(value + " (" + hasil.release_date.slice(0,4) + ")");
 }
-	
+if (idnya == "original_title") {
+$("#original_title").val(value);
+}
+if (idnya == "belongs_to_collection") {
+$("#poster").val("https://image.tmdb.org/t/p/w500"+hasil.belongs_to_collection.poster_path);
+}
+if (idnya == "genres") {
+var genres = "";
+$.each(hasil.genres, function(i, item) {
+genres +=  item.name + ', ';
+});
+$("#genres").val(genres);
+}
+if (idnya == "production_countries") {
+var country = "";
+$.each(hasil.production_countries, function(i, item) {
+country +=  item.iso_3166_1 + ', ';
+});
+$("#country").val(country);
+}
+if (idnya == "release_date") {
+  var nambul = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var bulan = value.slice(5,7) - 1;
+var nabul = nambul[bulan];
+var year = value.slice(8,10) + ' ' + nabul  + ' ' + value.slice(0, 4) ;
+$("#release_date").val(year);
+}
+if (idnya == "production_countries") {
+var pemain = "";
+$.each(hasil.credits.cast, function(i, item) {
+if(i>3) return false;
+pemain +=  item.name + ', ';
+});
+$("#cast").val(pemain);
+}
+if (idnya == "title") {
+var trailerss = "";
+$.each(hasil.trailers.youtube, function(i, item) {
+if(i=0) return false;
+trailerss =  item.source;
+});
+$("#trailer").val("https://www.youtube.com/embed/" + trailerss);
+}
+if (idnya == "vote_average") {
+$("#rating").val(value);
+}
+if (idnya == "overview") {
+$("#synopsis").val(value);
+}
+});
+});
+
+}
+function generate(){
+$("#output").val('hasil');
+}
 	</script>	
 </head>
-<body><form>
+<body>
 	<div><span>IMDB ID : </span> <input type="text" id="imdb" /> <button id="getdata" class="btn btn-primary" onclick="letsgo()" type="submit">Get INFO</button></div>
 	
-	</form>
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 	<table class="table table-striped table-hover table-responsive">
 	<thead>
@@ -101,6 +162,11 @@ var imdb = $("#imdb").value;
 			<td>Rating</td>
 	  <td>
 				<input type="text" id="rating" />			</td>
+		</tr>
+        <tr>
+			<td>Synopsis</td>
+	  <td>
+				<input type="text" id="synopsis" />			</td>
 		</tr></tbody></table></div> <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <table class="table table-striped table-hover table-responsive">
         <thead>
