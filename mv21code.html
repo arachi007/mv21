@@ -35,6 +35,7 @@ Update: 9/8/2017
 
 <script>
 function letsgo(){
+$("#hasilnya").css("display", "block");
 var imdb = $("#imdb").val();
 var url = "https://api.themoviedb.org/3/movie/";
 var respon = "?append_to_response=trailers,credits";
@@ -44,6 +45,7 @@ $.getJSON(url + imdb + respon + string + key, function(hasil) {
 $.each(hasil, function(idnya, value) {
 if (idnya == "title") {
 $("#title").val(value + " (" + hasil.release_date.slice(0,4) + ")");
+$("#judulnya").html(value + " (" + hasil.release_date.slice(0,4) + ")");
 }
 if (idnya == "original_title") {
 $("#original_title").val(value);
@@ -99,13 +101,30 @@ $("#synopsis").val(value);
 
 }
 function generate(){
-$("#output").val('hasil');
+$("#manual").css("display", "block");
+$("#output").val('<h3>Synopsis</h3>'+'\n'
++ $("#synopsis").val() + '\n' + 
+'<div class="separator"><img src="' + $("#poster").val() +'"/></div>'+ '\n' +
+'<div style="text-align: center;"><a class="btn btn-info googledrive" href="https://drive.google.com/uc?id="'+ $("#google").val() +'" rel="nofollow" role="button">Google Drive <i class="fa fa-download"></i> </a> </div> '+'\n'+
+'<div style="display: none;">'+'\n'+
+'<div data="'+ $("#google").val() +'" id="bigframe"></div>'+'\n'+ 
+'<div data="'+ $("#openload").val() +'" id="second"></div>'+'\n'+ 
+'<div data="'+ $("#mirror").val() +'" id="mirror"></div>'+'\n'+ 
+'<div data="'+ $("#trailer").val() +'" id="trailer"></div>'+'\n'+ 
+'<div data="https://cdn.rawgit.com/arachi007/mv21/c2a11a63/default.srt" id="subjudul"></div>'+'\n'+ 
+'<div class="1" data="" subtitle=""></div>'+'\n'+ 
+'<div akhir="" awal="" id="episod"></div>'+'\n'+ 
+'<p id="imdb" data="'+ $("#imdb").val() +'"></p>'+'\n'+ 
+'</div>'+'\n'
+);
+document.getElementById("output").style.height = (document.getElementById("output").scrollHeight)+"px";
+$("#genrenya").html($("#genres").val() + $("#country").val() + $("#release_date").val().slice(7,12));
 }
 	</script>	
 </head>
 <body>
 	<div><span>IMDB ID : </span> <input type="text" id="imdb" /> <button id="getdata" class="btn btn-primary" onclick="letsgo()" type="submit">Get INFO</button></div>
-	
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 	<table class="table table-striped table-hover table-responsive">
 	<thead>
@@ -195,9 +214,16 @@ $("#output").val('hasil');
 		</tr>
 	</tbody>
 	</table></div>
+    </div>
+    <div id="hasilnya" style="display:none;">
 	<div> <button id="generate" class="btn btn-success" onclick="generate()" type="submit">Generate HTML</button> </div>
 	<fieldset disabled><textarea id="output"></textarea></fieldset>
-	
+	 </div>
+     <div id="manual" style="display:none;">
+    <h3> Copy Data Berikut dan masukkan secara manual : </h3></br>
+    <label> Judul : </label> <span id="judulnya"></span></br>
+    <label> Label : </label> <span id="genrenya"></span>
+   </div>
 	
 </body>
 </html>
