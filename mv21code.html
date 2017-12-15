@@ -44,12 +44,13 @@ function check(){
 if(($("#title").val() || $("#poster").val()).length > 0 ){
 $('input').val('');
 }
+	else { alert ('masih kosong');}
 }	
 	//]]>
 	</script>	
 </head>
 <body>
-	<div><span>IMDB ID : </span> <input type="text" id="imdb" placeholder="tt1961175 or 415842" /> <button id="getdata" class="btn btn-primary" onclick="letsgo();check()" type="submit">Get INFO</button></div>
+	<div><span>IMDB ID : </span> <input type="text" id="imdb" placeholder="tt1961175 or 415842" /> <button id="getdata" class="btn btn-primary" onclick="letsgo();" type="submit">Get INFO</button>   <button id="getdata" class="btn btn-primary" onclick="check()" type="submit">Clear Data</button></div>
     <span>www.imdb.com/title/<b>tt1961175</b> or https://www.themoviedb.org/movie/<b>415842</b>-american-assassin</span>
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
