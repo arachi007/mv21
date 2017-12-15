@@ -135,11 +135,6 @@ if ($("#name").val() && $("#desc").val() && $('#backdrop').val() && $('#poster')
 	document.getElementById("ketqua-output").style.height = (document.getElementById("ketqua-output").scrollHeight)+"px";
 	$("#baidang-title").html($('#name').val()+' ('+$('#year').val()+')');
 	$("#baidang-tag").html($('#country').val()+', '+$('#genre').val()+', ' +$('#year').val());
-	var crew_x = ($("#actor").val()+', '+$("#director").val()).split(', ');
-	for (i in crew_x) {
-		var kk = crew_x[i].split('_');
-		$("#baidang-tag").append(kk[0]+'_'+kk[1]+', ');
-	}
 	if ($("#type").val() == 'Series movie') $("#baidang-tag").append('Series movie');
 	if ($("#type").val() == 'Movies') $("#baidang-tag").append('Movies');
 	if ($("#dangchieu").attr('checked')) $("#baidang-tag").append(', Đang chiếu');
