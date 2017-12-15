@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+<html>
 <!--
 Source code của tool mở / không mã hóa sử dụng cho mục đích học tập. Vui lòng không sử dụng với mục đích thương mại.
 Code thuần js, nếu muốn up lên server chỉ cần copy hết source và dán sang file html.
@@ -35,94 +36,11 @@ Update: 9/8/2017
 	</style>
 
 <script>
-function letsgo(){
-$("#hasilnya").css("display", "block");
-var imdb = $("#imdb").val();
-var url = "https://api.themoviedb.org/3/movie/";
-var respon = "?append_to_response=trailers,credits";
-var string = "&language=en-US";
-var key = "&api_key=3ab3d30d05909bf2341d51fd240c6570";
-$.getJSON(url + imdb + respon + string + key, function(hasil) {
-$.each(hasil, function(idnya, value) {
-if (idnya == "title") {
-$("#title").val(value + " (" + hasil.release_date.slice(0,4) + ")");
-$("#judulnya").html(value + " (" + hasil.release_date.slice(0,4) + ")");
-}
-if (idnya == "original_title") {
-$("#original_title").val(value);
-}
-if (idnya == "poster_path") {
-var pic = '<a href="https://image.tmdb.org/t/p/w500'+value+'" download="'+hasil.title+'.jpg"><img src="https://image.tmdb.org/t/p/w500' + value + '" width="180" height="320"></img></a>';
-$("#poster").val("https://image.tmdb.org/t/p/w500"+hasil.backdrop_path);
-$(".poster").html(pic);
-}
-if (idnya == "genres") {
-var genres = "";
-$.each(hasil.genres, function(i, item) {
-genres +=  item.name + ', ';
-});
-$("#genres").val(genres);
-}
-if (idnya == "production_countries") {
-var country = "";
-$.each(hasil.production_countries, function(i, item) {
-country +=  item.iso_3166_1 + ', ';
-});
-$("#country").val(country);
-}
-if (idnya == "release_date") {
-  var nambul = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-var bulan = value.slice(5,7) - 1;
-var nabul = nambul[bulan];
-var year = value.slice(8,10) + ' ' + nabul  + ' ' + value.slice(0, 4) ;
-$("#release_date").val(year);
-}
-if (idnya == "production_countries") {
-var pemain = "";
-$.each(hasil.credits.cast, function(i, item) {
-if(i>3) return false;
-pemain +=  item.name + ', ';
-});
-$("#cast").val(pemain);
-}
-if (idnya == "title") {
-var trailerss = "";
-$.each(hasil.trailers.youtube, function(i, item) {
-if(i=0) return false;
-trailerss =  item.source;
-});
-$("#trailer").val("https://www.youtube.com/embed/" + trailerss);
-}
-if (idnya == "vote_average") {
-$("#rating").val(value);
-}
-if (idnya == "overview") {
-$("#synopsis").val(value);
-}
-});
-});
-}
-function generate(){
-$("#manual").css("display", "block");
-$("#output").val('<h3>Synopsis</h3>'+'\n'
-+ $("#synopsis").val() + '\n' + 
-'<div class="separator"><img src="' + $("#poster").val() +'"/></div>'+ '\n' +
-		 '<h3>Download</h3>'+'\n'+
-'<div style="text-align: center;"><a class="btn btn-info googledrive" href="https://drive.google.com/uc?id='+ $("#google").val() +'" rel="nofollow" role="button">Google Drive <i class="fa fa-download"></i> </a> </div> '+'\n'+
-'<div style="display: none;">'+'\n'+
-'<div data="'+ $("#google").val() +'" id="bigframe"></div>'+'\n'+ 
-'<div data="'+ $("#openload").val() +'" id="second"></div>'+'\n'+ 
-'<div data="'+ $("#mirror").val() +'" id="mirror"></div>'+'\n'+ 
-'<div data="'+ $("#trailer").val() +'" id="trailer"></div>'+'\n'+ 
-'<div data="https://cdn.rawgit.com/arachi007/mv21/c2a11a63/default.srt" id="subjudul"></div>'+'\n'+ 
-'<div class="1" data="" subtitle=""></div>'+'\n'+ 
-'<div akhir="" awal="" id="episod"></div>'+'\n'+ 
-'<p id="imdb" data="'+ $("#imdb").val() +'"></p>'+'\n'+ 
-'</div>'+'\n'
-);
-document.getElementById("output").style.height = (document.getElementById("output").scrollHeight)+"px";
-$("#genrenya").html($("#genres").val() + $("#country").val() + $("#release_date").val().slice(7,11));
-}
+//<![CDATA[
+
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('f 1i(){$("#1j").N("y","O");9 o=$("#o").2();9 P="j://1k.1l.u/3/1m/";9 Q="?1n=R,S";9 T="&1o=1p-1q";9 U="&1r=1s";$.1t(P+o+Q+T+U,f(e){$.q(e,f(c,d){b(c=="v"){$("#v").2(d+" ("+e.r.m(0,4)+")");$("#1u").z(d+" ("+e.r.m(0,4)+")")}b(c=="V"){$("#V").2(d)}b(c=="1v"){9 W=\'<a X="j://A.B.u/t/p/C\'+d+\'" Y="\'+e.v+\'.1w"><D Z="j://A.B.u/t/p/C\'+d+\'" 1x="1y" 12="1z"></D></a>\';$("#E").2("j://A.B.u/t/p/C"+e.1A);$(".E").z(W)}b(c=="k"){9 k="";$.q(e.k,f(i,g){k+=g.13+\', \'});$("#k").2(k)}b(c=="F"){9 s="";$.q(e.F,f(i,g){s+=g.1B+\', \'});$("#s").2(s)}b(c=="r"){9 14=["1C","1D","1E","1F","1G","1H","1I","1J","1K","1L","1M","1N"];9 15=d.m(5,7)-1;9 16=14[15];9 17=d.m(8,10)+\' \'+16+\' \'+d.m(0,4);$("#r").2(17)}b(c=="F"){9 G="";$.q(e.S.18,f(i,g){b(i>3)19 1a;G+=g.13+\', \'});$("#18").2(G)}b(c=="v"){9 H="";$.q(e.R.1b,f(i,g){b(i=0)19 1a;H=g.1O});$("#I").2("j://1P.1b.J/1Q/"+H)}b(c=="1R"){$("#1S").2(d)}b(c=="1T"){$("#1c").2(d)}})})}f 1U(){$("#1V").N("y","O");$("#K").2(\'<w>1W</w>\'+\'\\n\'+$("#1c").2()+\'\\n\'+\'<6 x="1X"><D Z="\'+$("#E").2()+\'"/></6>\'+\'\\n\'+\'<w>1Y</w>\'+\'\\n\'+\'<6 L="1Z-20: 21;"><a x="1d 1d-22 23" X="j://24.M.J/25?h=\'+$("#M").2()+\'" 26="27" 28="29">2a 2b <i x="1e 1e-Y"></i> </a> </6> \'+\'\\n\'+\'<6 L="y: 2c;">\'+\'\\n\'+\'<6 l="\'+$("#M").2()+\'" h="2d"></6>\'+\'\\n\'+\'<6 l="\'+$("#2e").2()+\'" h="2f"></6>\'+\'\\n\'+\'<6 l="\'+$("#1f").2()+\'" h="1f"></6>\'+\'\\n\'+\'<6 l="\'+$("#I").2()+\'" h="I"></6>\'+\'\\n\'+\'<6 l="j://2g.2h.J/2i/2j/2k/2l.2m" h="2n"></6>\'+\'\\n\'+\'<6 x="1" l="" 2o=""></6>\'+\'\\n\'+\'<6 2p="" 2q="" h="2r"></6>\'+\'\\n\'+\'<p h="o" l="\'+$("#o").2()+\'"></p>\'+\'\\n\'+\'</6>\'+\'\\n\');1g.1h("K").L.12=(1g.1h("K").2s)+"2t";$("#2u").z($("#k").2()+$("#s").2()+$("#r").2().m(7,11))}',62,155,'||val||||div|||var||if|idnya|value|hasil|function|item|id||https|genres|data|slice||imdb||each|release_date|country||org|title|h3|class|display|html|image|tmdb|w500|img|poster|production_countries|pemain|trailerss|trailer|com|output|style|google|css|block|url|respon|trailers|credits|string|key|original_title|pic|href|download|src|||height|name|nambul|bulan|nabul|year|cast|return|false|youtube|synopsis|btn|fa|mirror|document|getElementById|letsgo|hasilnya|api|themoviedb|movie|append_to_response|language|en|US|api_key|3ab3d30d05909bf2341d51fd240c6570|getJSON|judulnya|poster_path|jpg|width|180|320|backdrop_path|iso_3166_1|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|source|www|embed|vote_average|rating|overview|generate|manual|Synopsis|separator|Download|text|align|center|info|googledrive|drive|uc|rel|nofollow|role|button|Google|Drive|none|bigframe|openload|second|cdn|rawgit|arachi007|mv21|c2a11a63|default|srt|subjudul|subtitle|akhir|awal|episod|scrollHeight|px|genrenya'.split('|'),0,{}))
+
+//]]>
 	</script>	
 </head>
 <body>
