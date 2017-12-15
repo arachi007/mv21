@@ -52,7 +52,9 @@ if (idnya == "original_title") {
 $("#original_title").val(value);
 }
 if (idnya == "poster_path") {
-$("#poster").val("https://image.tmdb.org/t/p/w500"+value);
+var pic = '<a href="https://image.tmdb.org/t/p/w500'+value+'" download="'+hasil.title+'.jpg"><img src="https://image.tmdb.org/t/p/w500' + value + '" width="180" height="320"></img></a>';
+$("#poster").val("https://image.tmdb.org/t/p/w500"+hasil.backdrop_path);
+$(".poster").html(pic);
 }
 if (idnya == "genres") {
 var genres = "";
@@ -215,7 +217,10 @@ $("#genrenya").html($("#genres").val() + $("#country").val() + $("#release_date"
 				<input type="text" id="mirror" />			</td>
 		</tr>
 	</tbody>
-	</table></div>
+	</table>
+    <div class="poster"></div>
+    </div>
+    
     </div>
     <div id="hasilnya" style="display:none;">
 	<div> <button id="generate" class="btn btn-success" onclick="generate()" type="submit">Generate HTML</button> </div>
