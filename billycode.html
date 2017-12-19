@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+input, textarea{ width:90%}
+input#link1,#link2,#link3,#link4{width: 70%;}
+select { width:25%}
+	#output{width:100%;
+	overflow:hidden;
+	resize: none;
+	}
+</style>
+<script src='//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' type='text/javascript'></script>
+<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="row">
+
+<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+<table class="table table-striped table-hover table-responsive">
+	<thead>
+		<tr>
+			<th>
+				NAME</th>
+			<th>
+				CONTENT			</th>
+		</tr>
+	</thead>
+	<tbody>
+<tr>
+<td>Judul</td>
+<td><input id="judul" type="text"/></td>
+</tr>
+<tr>
+<td>Poster</td>
+<td><input id="poster" type="text" placeholder="jika menggunakan gambar eksternal"/></td>
+</tr>
+<tr>
+<td>Sinopsis</td>
+<td><textarea id="sinopsis" type="text"></textarea></td>
+</tr>
+<tr>
+<td>Trailer</td>
+<td><input id="trailer" type="text" placeholder="YT ID, ex : XwHAGKxsbcg"/></td>
+</tr>
+
+</tbody>
+</table>
+</div>
+<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+<table class="table table-striped table-hover table-responsive">
+	<thead>
+		<tr>
+			<th>
+				NAME</th>
+			<th>
+				CONTENT			</th>
+		</tr>
+	</thead>
+	<tbody>
+<tr>
+<td><input id="server1" type="text" placeholder="Google"/></td>
+<td><input id="link1" type="text"/>
+<select id="kualitas1">
+<option value="360p">360p</option>
+<option value="480p">480p</option>
+<option value="720p">720p</option>
+<option value="1080p">1080p</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Kualitas Kedua</td>
+<td><input id="link2" type="text"/>
+<select id="kualitas2">
+<option value="480p">480p</option>
+<option value="720p">720p</option>
+<option value="1080p">1080p</option>
+</select>
+</td>
+</tr>
+<tr>
+<td><input id="server3" type="text" placeholder="Openload"/></td>
+<td><input id="link3" type="text"/>
+<select id="kualitas3">
+<option value="360p">360p</option>
+<option value="480p">480p</option>
+<option value="720p">720p</option>
+<option value="1080p">1080p</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Kualitas Kedua</td>
+<td><input id="link4" type="text"/>
+<select id="kualitas4">
+<option value="480p">480p</option>
+<option value="720p" default>720p</option>
+<option value="1080p">1080p</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Subtitle</td>
+<td><input id="subtitle" type="text"/></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div> <button id="generate" class="btn btn-success" onclick="generate()" type="submit">Generate HTML</button> </div>
+	<fieldset readonly><textarea id="output" readonly></textarea></fieldset>
+<script>
+//<![CDATA[
+
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('S T(){g t=$("#u").2();g v=$("#w").2();g h="";g i="";x(t==\'\'){h=$("#y").2()+\' : <a 8="\'+$("#z").2()+\'" 9="b" c="d">\'+$("#A").2()+\'</a>\'}B{h=$("#y").2()+\' : <a 8="\'+$("#z").2()+\'" 9="b" c="d">\'+$("#A").2()+\'</a> | <a 8="\'+$("#u").2()+\'" 9="b" c="d">\'+$("#U").2()+\'</a>\'}x(v==\'\'){i=$("#C").2()+\' : <a 8="\'+$("#D").2()+\'" 9="b" c="d">\'+$("#E").2()+\'</a>\'}B{i=$("#C").2()+\' : <a 8="\'+$("#D").2()+\'" 9="b" c="d">\'+$("#E").2()+\'</a> | <a 8="\'+$("#w").2()+\'" 9="b" c="d">\'+$("#V").2()+\'</a>\'}$("#o").2(\'<e 4="6-5: 7;">\\n\'+$("#p").2()+\'\\n<F 5="7" W="0" X="0" G="f-H-Y" 4="j-q: k; j-I: k; 6-5: 7;">\\n<J>\\n<f><l 4="6-5: 7;">\\n<a 8="\'+$("#K").2()+\'" Z="1" 4="j-q: k; j-I: k;">\\n<10 11="0" r-L-m="12" r-L-s="13" m="14" M="\'+$("#K").2()+\'" s="15" /></a>\\n</l></f>\\n<f>\\n<l G="f-H" 4="6-5: 7;">\'+$("#p").2()+\'</l>\\n</f>\\n</J></F>\\n</e>\\n<e>16 :</e>\\n<3>\\n\'+$("#17").2()+\'\\n</3>\\n<e>18 :</e>\\n<3>\\n<3 4="6-5: 7;">\\n<N 19="1a-O" 1b="" 1c="0" 1d="O" m="1e" M="1f://1g.1h.1i/1j/\'+$("#1k").2()+\'" s="1l"></N>\\n</3>\\n<P 4="6-5: 7;">1m :</P>\\n<3 4="6-5: 7;">\'+h+\'\\n</3>\\n<3 4="6-5: 7;">\'+i+\'\\n</3>\\n<3 4="6-5: 7;">\\n<a 8="\'+$("#1n").2()+\'" 9="b" c="d">1o 1p</a></3>\\n<3 4="6-5: q;">1q 1r <a 1s:8="r:1t.1u" 9="b" c="d">\'+$("#p").2()+\'</a>.\\n</3></3>\');Q.R("o").4.m=(Q.R("o").1v)+"1w"}',62,95,'||val|div|style|align|text|center|href|rel||nofollow|target|_blank|h3|tr|var|google|oload|margin|auto|td|height||output|judul|left|data|width|kk1|link2|kk2|link4|if|server1|link1|kualitas1|else|server3|link3|kualitas3|table|class|caption|right|tbody|poster|original|src|iframe|media|h2|document|getElementById|function|generate|kualitas2|kualitas4|cellpadding|cellspacing|container|imageanchor|img|border|1000|697|320|223|Sinopsis|sinopsis|Trailer|allow|encrypted|allowfullscreen|frameborder|gesture|315|https|www|youtube|com|embed|trailer|560|Download|subtitle|Subtitle|Indonesia|Selamat|mendownload|expr|post|url|scrollHeight|px'.split('|'),0,{}))
+
+//]]>
+</script>
+</body>
+</html>
