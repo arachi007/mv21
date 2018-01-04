@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <script src="//cdn.rawgit.com/chrisveness/crypto/4e93a4d/aes.js">/* AES JavaScript implementation */</script>
+    <script src="//cdn.rawgit.com/chrisveness/crypto/4e93a4d/aes-ctr.js">/* AES Counter Mode implementation */</script>
+<body>
+en <p id="demo"></p>
+de <p id="demon"></p>
+<script>
+var pass = "1";
+var text = "aWQ9MEIxbUV0LXJHVlphR1lYQjZiRzE1YTNONU9EQSZwb3N0ZXI9JnRpdGxlPSZzdWI9";
+var en = AesCtr.encrypt(text, pass, 256);
+var de = AesCtr.decrypt(en, pass, 256);
+document.getElementById("demo").outerHTML = btoa(en);
+document.getElementById("demon").innerHTML = de;
+</script>
+
+</body>
+</html> 
